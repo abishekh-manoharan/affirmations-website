@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 
+// Middleware
+app.use(express.json())
+
 const affirmations = [
     {
         "userID": 1,
@@ -28,12 +31,12 @@ const affirmations = [
 ]
 
 // get all affirmations 
-app.get('/', (req, res) => {
+app.get('/affirmations', (req, res) => {
     res.json(affirmations)
 })
 
 // get all affirmations of a set from a user
-app.get('/:uid/:setID', (req,res)=>{
+app.get('/affirmations/:uid/:setID', (req,res)=>{
     const userId = Number(req.params.uid)
     const setID = Number(req.params.setID)
 
@@ -47,6 +50,13 @@ app.get('/:uid/:setID', (req,res)=>{
     console.log(filteredAffirmations);
 
     res.json(filteredAffirmations)
+})
+
+// add an affirmation
+app.post('/affirmations', (req,res)=> {
+    console.log('post body: ')
+    console.log(req.body);
+    res.send(req.body)
 })
 
 const PORT = 3001
