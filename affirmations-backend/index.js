@@ -27,8 +27,26 @@ const affirmations = [
     }
 ]
 
+// get all affirmations 
 app.get('/', (req, res) => {
     res.json(affirmations)
+})
+
+// get all affirmations of a set from a user
+app.get('/:uid/:setID', (req,res)=>{
+    const userId = Number(req.params.uid)
+    const setID = Number(req.params.setID)
+
+    const filteredAffirmations = affirmations.filter((a)=>{
+        console.log('params uid: '+userId)
+        console.log('params setid: '+setID)
+        console.log(a.userID === userId && a.setID === setID)
+        return a.userID === userId && a.setID === setID
+    })    
+
+    console.log(filteredAffirmations);
+
+    res.json(filteredAffirmations)
 })
 
 const PORT = 3001
