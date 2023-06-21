@@ -1,0 +1,17 @@
+{
+  "name": "affirmations-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "runClient": "cd affirmations-backend && nodemon",
+    "runServer": "cd affirmations-frontend && nodemon",
+    "runAll": "concurrently \"npm run runServer\" \"npm run runClient\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
