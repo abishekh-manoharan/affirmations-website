@@ -12,6 +12,7 @@ const affirmations = [
         "content": "An eye for an eye makes the whole world blind.",
         "author": "Ghandi",
         "style": "default"
+        
     },
     {
         "userID": 1,
@@ -29,6 +30,24 @@ const affirmations = [
         "style": "default"
     }
 ]
+
+const sets = [
+    {
+        "setID": 1,
+        "Name": "Set 1",
+        "Description": "",
+        "Quantity": 2,
+        "dateUpdated": "2012-04-23T18:25:43.511Z"
+    },
+    {
+        "setID": 2,
+        "Name": "Set 2",
+        "Description": "",
+        "Quantity": 1,
+        "dateUpdated": "2012-04-23T18:25:43.511Z"
+    }
+]
+
 
 // get all affirmations 
 app.get('/affirmations', (req, res) => {
