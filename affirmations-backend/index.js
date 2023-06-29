@@ -48,6 +48,9 @@ const sets = [
     }
 ]
 
+/*
+    CRUD for affirmations
+*/
 
 // get all affirmations 
 app.get('/affirmations', (req, res) => {
@@ -77,6 +80,16 @@ app.post('/affirmations', (req,res)=> {
     console.log(req.body);
     res.send(req.body)
 })
+
+
+/*
+    CRUD for sets
+*/
+// get all sets
+app.get('/sets', (req,res)=> {
+    res.json(sets)
+})
+
 
 const PORT = 3001
 app.listen(PORT)

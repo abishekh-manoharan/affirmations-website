@@ -1,14 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <div className="App">
-      <form action='http://localhost:3001/affirmations' method='post'>
-        <input type='text'/>
-        <input type='submit'/>
-      </form>
-    </div>
+      <Layout />
+    </div> 
   );
 }
 
