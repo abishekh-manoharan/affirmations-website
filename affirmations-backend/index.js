@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
 // Middleware
 app.use(express.json())
+app.use(cors())
 
 const affirmations = [
     {
@@ -37,6 +39,27 @@ const sets = [
         "Name": "Set 1",
         "Description": "",
         "Quantity": 2,
+        "dateUpdated": "2012-04-23T18:25:43.511Z"
+    },
+    {
+        "setID": 2,
+        "Name": "Set 2",
+        "Description": "",
+        "Quantity": 1,
+        "dateUpdated": "2012-04-23T18:25:43.511Z"
+    },
+    {
+        "setID": 2,
+        "Name": "Set 2",
+        "Description": "",
+        "Quantity": 1,
+        "dateUpdated": "2012-04-23T18:25:43.511Z"
+    },
+    {
+        "setID": 2,
+        "Name": "Set 2",
+        "Description": "",
+        "Quantity": 1,
         "dateUpdated": "2012-04-23T18:25:43.511Z"
     },
     {

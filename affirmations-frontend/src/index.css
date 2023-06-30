@@ -20,3 +20,15 @@ code {
   padding: 10px;
 }
 
+.sets-flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  height: 20vh;
+  margin-top: 50px;
+}
+
+.set-item {
+  background-color: aqua;
+}
