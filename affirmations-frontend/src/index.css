@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,15 +18,59 @@ code {
   padding: 10px;
 }
 
+
+
+
+/* SETS styling */
 .sets-flex {
   display: flex;
   justify-content: center;
+  align-items: start;
   flex-wrap: wrap;
   gap: 20px;
-  height: 20vh;
+  /* height: 20vh; */
+  width: 90vw;
+  margin: auto;
   margin-top: 50px;
 }
 
 .set-item {
   background-color: aqua;
+  min-width: 0px;
+  display: grid;
+  grid-template-areas: 
+    'name name'
+    'quantity date'
+  ;
+  grid-template-rows: auto 50px;
+  grid-template-columns: 1fr 3fr;
+  flex-basis: 300px; 
+  height: 300px; 
+  /* min-height: 300px; */
+  border-radius: 25px;
+  align-items: center;
+  justify-items: center;
+}
+
+.set-name {
+  grid-area: name;  
+  font-size: x-large;
+  margin: 30px;
+  margin-top: 60px;
+}
+
+.set-quantity {
+  grid-area: quantity;  
+  margin: 15px;
+  justify-self: start;
+}
+
+.set-date {
+  margin: 15px;
+  grid-area: date;  
+  justify-self: end;
+}
+
+.set-item:nth-of-type(1) {
+  background-color: aquamarine;
 }
