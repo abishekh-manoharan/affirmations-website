@@ -44,7 +44,7 @@ const sets = [
     },
     {
         "setID": 2,
-        "Name": "Quotes by the late, great, mohammed ali",
+        "Name": "Quotes by mohammed ali",
         "Description": "",
         "Quantity": 1,
         "dateUpdated": "2012-04-23T18:25:43.511Z"
