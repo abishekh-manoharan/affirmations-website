@@ -10,6 +10,7 @@ function Content(props) {
 
     // side effects
     useEffect(() => { console.log('NAME ' + name) })
+    
     useEffect(() => {
         dataAccess
             .getAllSets()
@@ -17,24 +18,32 @@ function Content(props) {
     }, [])
 
 
-    // handlers
+
+
+    /***** handlers ******/
+
+    // handler to update 'name' state in response to changes in the input element for name
     const nameChangeHandler = (e) => {
         console.log(e.target.value);
         setName(e.target.value)
     }
 
+    // handlers to change display of add set
     const clickAddButtonHandler = (e) => {
         console.log('clicked add')
         setAddSetContent('addForm')
     }
-
     const cancelButtonClickHandler = (e) => {
+        setName('')
         setAddSetContent('plusSign')
     }
 
+    // handler to add new set
     const addButtonClickHandler = (e) => {
         console.log(name)
     }
+
+
 
 
     // choosing content for the add button
@@ -49,12 +58,17 @@ function Content(props) {
     else if (addSetContent === 'addForm') {
         addContent = <div className="set-item">
             <form class="add-set-set">
-                <input onChange={nameChangeHandler} type='text' /> <br />
-                <input type="button" onClick={() => console.log(name)} value="Add" />
-                <input type="button" onClick={cancelButtonClickHandler} value="Cancel" />
+                <label class="nameLabel" for="name">Name:</label>
+                <input class="nameInput" onChange={nameChangeHandler} type='text' name="name" /> 
+                <input class="submitNameBtn" type="button" onClick={addButtonClickHandler} value="Add" />
+                <input class="closeFormBtn" type="button" onClick={cancelButtonClickHandler} value="Cancel" />
             </form>
         </div>
     }
+
+
+
+
 
     return (
         <>
@@ -73,7 +87,8 @@ function Content(props) {
                             <div className="set-date">
                                 {new Date(set.dateUpdated).toDateString()}
                             </div>
-                        </div>)
+                        </div>
+                    )
                 }
             </div>
         </>

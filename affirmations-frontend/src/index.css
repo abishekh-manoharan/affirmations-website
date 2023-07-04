@@ -10,7 +10,6 @@ code {
     monospace;
 }
 
-
 .header-bar {
   display: flex;
   justify-content: end;
@@ -47,6 +46,7 @@ code {
   border-radius: 25px;
   align-items: center;
   justify-items: center;
+  flex-shrink: 0;
 }
 
 .set-name {
@@ -70,9 +70,43 @@ code {
 
 .set-item:nth-of-type(1) {
   background-color: aquamarine;
+
+}
+/* add form */
+.add-set-set {
+  display: grid;
+  grid-template-areas: 
+  'nameLabel nameInput nameInput'
+  'none submitName closeForm'
+  ;  
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  width: 300px;
+  margin-top: 50px;
+}
+.nameLabel{
+  grid-area: nameLabel;    
+  margin: auto;
+  margin-left: 10px;
+}
+.nameInput{
+  grid-area: nameInput;   
+  height: 20px;
+  width: 200px;
+  margin: auto;
+}
+.submitNameBtn{
+  grid-area: submitName;
+  width: 85%;
+  margin-top: 10px;
+}
+.closeFormBtn{
+  grid-area: closeForm;
+  width: 85%;
+  margin-top: 10px;
 }
 
-.add-set-overlay {
+/* .add-set-overlay {
   position: fixed;
   left: 0; 
   right: 0; 
@@ -92,4 +126,5 @@ code {
   justify-content: center;
   align-items: center;
   gap: 10px;
-}
+} */
+
