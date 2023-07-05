@@ -7,4 +7,6 @@ const getAllSets = () => axios.get(URL+'sets').then(res=>{
     return res.data
 })
 
-export default {getAllSets}
+const addSet = (set) => axios.post(URL+'sets', set).then(res=>console.log(`post response: =----=${res}`))
+
+export default {getAllSets, addSet}

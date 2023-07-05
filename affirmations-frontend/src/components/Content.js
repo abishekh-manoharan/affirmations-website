@@ -9,16 +9,11 @@ function Content(props) {
     const [addSetContent, setAddSetContent] = useState('plusSign')
 
     // side effects
-    useEffect(() => { console.log('NAME ' + name) })
-    
     useEffect(() => {
         dataAccess
             .getAllSets()
             .then(res => setSets(res))
     }, [])
-
-
-
 
     /***** handlers ******/
 
@@ -40,10 +35,22 @@ function Content(props) {
 
     // handler to add new set
     const addButtonClickHandler = (e) => {
-        console.log(name)
+        // creating js object for the new set        
+        const newSet = {
+            "setID": Math.random() * 10000000000,
+            "Name": name,
+            "Quantity": 0,
+            "dateUpdated": new Date().toISOString(),
+            "dateCreated": new Date().toISOString()
+        }
+        
+        console.log('\nnew set being added:')
+        console.log(newSet);
+
+        dataAccess.addSet(newSet);    // updating server
+        setSets(sets.concat(newSet))    // updating sets UI
+        setAddSetContent('plusSign')   // updating add sets component to go back to plus sign
     }
-
-
 
 
     // choosing content for the add button
@@ -57,11 +64,11 @@ function Content(props) {
     }
     else if (addSetContent === 'addForm') {
         addContent = <div className="set-item">
-            <form class="add-set-set">
-                <label class="nameLabel" for="name">Name:</label>
-                <input class="nameInput" onChange={nameChangeHandler} type='text' name="name" /> 
-                <input class="submitNameBtn" type="button" onClick={addButtonClickHandler} value="Add" />
-                <input class="closeFormBtn" type="button" onClick={cancelButtonClickHandler} value="Cancel" />
+            <form className="add-set-set">
+                <label className="nameLabel" htmlFor="name">Name:</label>
+                <input className="nameInput" onChange={nameChangeHandler} type='text' name="name" />
+                <input className="submitNameBtn" type="button" onClick={addButtonClickHandler} value="Add" />
+                <input className="closeFormBtn" type="button" onClick={cancelButtonClickHandler} value="Cancel" />
             </form>
         </div>
     }
@@ -74,10 +81,10 @@ function Content(props) {
         <>
             {name}
             <div className="sets-flex">
-                { addContent }
+                {addContent}
                 {
                     sets.map((set) =>
-                        <div className="set-item">
+                        <div key={set.setID} className="set-item">
                             <div className="set-name">
                                 {set.Name}
                             </div>
