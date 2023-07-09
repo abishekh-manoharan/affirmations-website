@@ -2,10 +2,11 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import dataAccess from '../services/dataAccess'
 import plus from '../images/plus.svg'
+import Set from './Set';
 
 function Content(props) {
     const [sets, setSets] = useState([])
-    const [name, setName] = useState('test')
+    const [name, setName] = useState('')
     const [addSetContent, setAddSetContent] = useState('plusSign')
 
     // side effects
@@ -16,13 +17,11 @@ function Content(props) {
     }, [])
 
     /***** handlers ******/
-
     // handler to update 'name' state in response to changes in the input element for name
     const nameChangeHandler = (e) => {
         console.log(e.target.value);
         setName(e.target.value)
     }
-
     // handlers to change display of add set
     const clickAddButtonHandler = (e) => {
         console.log('clicked add')
@@ -32,7 +31,6 @@ function Content(props) {
         setName('')
         setAddSetContent('plusSign')
     }
-
     // handler to add new set
     const addButtonClickHandler = (e) => {
         // creating js object for the new set        
@@ -50,8 +48,8 @@ function Content(props) {
         dataAccess.addSet(newSet);    // updating server
         setSets(sets.concat(newSet))    // updating sets UI
         setAddSetContent('plusSign')   // updating add sets component to go back to plus sign
+        setName('') // resetting name
     }
-
 
     // choosing content for the add button
     let addContent = ''
@@ -64,7 +62,7 @@ function Content(props) {
     }
     else if (addSetContent === 'addForm') {
         addContent = <div className="set-item">
-            <form className="add-set-set">
+            <form className="add-set-set" onSubmit={(e)=>e.preventDefault()}>
                 <label className="nameLabel" htmlFor="name">Name:</label>
                 <input className="nameInput" onChange={nameChangeHandler} type='text' name="name" />
                 <input className="submitNameBtn" type="button" onClick={addButtonClickHandler} value="Add" />
@@ -75,8 +73,6 @@ function Content(props) {
 
 
 
-
-
     return (
         <>
             {name}
@@ -84,17 +80,7 @@ function Content(props) {
                 {addContent}
                 {
                     sets.map((set) =>
-                        <div key={set.setID} className="set-item">
-                            <div className="set-name">
-                                {set.Name}
-                            </div>
-                            <div className="set-quantity">
-                                {set.Quantity}
-                            </div>
-                            <div className="set-date">
-                                {new Date(set.dateUpdated).toDateString()}
-                            </div>
-                        </div>
+                        <Set key={set.setID} set={set} setSets={setSets}/>
                     )
                 }
             </div>

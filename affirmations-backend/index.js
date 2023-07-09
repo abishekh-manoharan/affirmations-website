@@ -1,12 +1,13 @@
 const express = require('express')
-const app = express()
 const cors = require('cors')
+
+const app = express() // initializing express app
 
 // Middleware
 app.use(express.json()) // JSON parser
-app.use(cors()) 
+app.use(cors())
 
-const affirmations = [
+let affirmations = [
     {
         "userID": 1,
         "affirmationID": 1,
@@ -14,7 +15,7 @@ const affirmations = [
         "content": "An eye for an eye makes the whole world blind.",
         "author": "Ghandi",
         "style": "default"
-        
+
     },
     {
         "userID": 1,
@@ -33,11 +34,18 @@ const affirmations = [
     }
 ]
 
-const sets = [
+let sets = [
     {
         "setID": 1,
-        "Name": "For the morning",
+        "Name": "Morning affirmations.",
         "Quantity": 2,
+        "dateUpdated": "2012-04-23T18:25:43.511Z",
+        "dateCreated": "2012-04-23T18:25:43.511Z"
+    },
+    {
+        "setID": 2,
+        "Name": "Night-time affirmations",
+        "Quantity": 1,
         "dateUpdated": "2012-04-23T18:25:43.511Z",
         "dateCreated": "2012-04-23T18:25:43.511Z"
     }
@@ -53,16 +61,16 @@ app.get('/affirmations', (req, res) => {
 })
 
 // get all affirmations of a set from a user
-app.get('/affirmations/:uid/:setID', (req,res)=>{
+app.get('/affirmations/:uid/:setID', (req, res) => {
     const userId = Number(req.params.uid)
     const setID = Number(req.params.setID)
 
-    const filteredAffirmations = affirmations.filter((a)=>{
-        console.log('params uid: '+userId)
-        console.log('params setid: '+setID)
+    const filteredAffirmations = affirmations.filter((a) => {
+        console.log('params uid: ' + userId)
+        console.log('params setid: ' + setID)
         console.log(a.userID === userId && a.setID === setID)
         return a.userID === userId && a.setID === setID
-    })    
+    })
 
     console.log(filteredAffirmations);
 
@@ -70,7 +78,7 @@ app.get('/affirmations/:uid/:setID', (req,res)=>{
 })
 
 // add an affirmation
-app.post('/affirmations', (req,res)=> {
+app.post('/affirmations', (req, res) => {
     console.log('post body: ')
     console.log(req.body);
     res.send(req.body)
@@ -81,14 +89,33 @@ app.post('/affirmations', (req,res)=> {
     CRUD for sets
 */
 // get all sets
-app.get('/sets', (req,res)=> {
+app.get('/sets', (req, res) => {
     res.json(sets)
 })
 // add a new set
-app.post('/sets', (req,res)=>{
-    const set=req.body
-    sets.push(set)    
+app.post('/sets', (req, res) => {
+    console.log('post request to /sets')
+    const set = req.body
+    sets.push(set)
     res.json(set)
+})
+
+// update existing set
+app.put('/sets', (req, res) => {
+    console.log('put request to /sets for set with id:'+req.body.setID)
+    console.log('body: '+req.body)
+    const setID = req.body.setID
+
+    sets = sets.map(e=>{
+        if(e.setID===setID) { 
+            return req.body
+        }
+        else {
+            return e
+        }
+    })
+
+    res.json(sets)
 })
 
 const PORT = 3001
