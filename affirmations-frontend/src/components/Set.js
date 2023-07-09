@@ -11,15 +11,12 @@ function Set({ set, setSets }) {
 
 
     /* HANDLERS  */
-    // handler to edit existing set
+    // handler to open edit UI
     const editSetClickHandler = (e, set) => {
         console.log('--edit clicked')
-        console.log(`e: ${e.target}`)
-        console.log(`set: ${set.Name}`)
-
         setContentToShowID('edit')
     }
-
+    // handler for submitting edited name
     const editSubmitBtnClickHandler = (e, set) => {
         set = { ...set, "Name": name }
         // setSet(set)
@@ -28,6 +25,15 @@ function Set({ set, setSets }) {
             .then(() => {
                 setContentToShowID('setInfo')
                 setSet(set)
+            })
+    }
+    // handler for clicking the delete button 
+    const deleteBtnClickHandler = (e, set) => {
+        const id = set.setID
+        dataAccess.deleteSet(id)
+            .then(res=>{
+                console.log(res)
+                setSets(res)
             })
     }
 
@@ -55,6 +61,7 @@ function Set({ set, setSets }) {
                     <label className="nameLabel" htmlFor="name">Name:</label>
                     <input className="nameInput" onChange={(e) => { setName(e.target.value) }} type='text' name="name" value={name} />
                     <input className="submitNameBtn" type="button" onClick={(e) => editSubmitBtnClickHandler(e, set)} value="Edit" />
+                    <input className="deleteBtn" type="button" onClick={(e) => deleteBtnClickHandler(e, set)} value="Delete" />
                     <input className="closeFormBtn" type="button" onClick={() => { setContentToShowID('setInfo') }} value="Cancel" />
                 </form>
             </div>

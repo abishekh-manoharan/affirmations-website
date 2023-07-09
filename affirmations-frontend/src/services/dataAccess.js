@@ -11,4 +11,6 @@ const addSet = (set) => axios.post(URL+'sets', set).then(res=>console.log(`respo
 
 const editSet = (set) => axios.put(URL+'sets', set)
 
-export default {getAllSets, addSet, editSet}
+const deleteSet = (id) => axios.delete(URL+'sets/'+id).then(res=>res.data)
+
+export default {getAllSets, addSet, editSet, deleteSet}
