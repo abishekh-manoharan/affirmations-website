@@ -54,12 +54,10 @@ let sets = [
 /*
     CRUD for affirmations
 */
-
 // get all affirmations 
 app.get('/affirmations', (req, res) => {
     res.json(affirmations)
 })
-
 // get all affirmations of a set from a user
 app.get('/affirmations/:uid/:setID', (req, res) => {
     const userId = Number(req.params.uid)
@@ -76,13 +74,13 @@ app.get('/affirmations/:uid/:setID', (req, res) => {
 
     res.json(filteredAffirmations)
 })
-
 // add an affirmation
 app.post('/affirmations', (req, res) => {
     console.log('post body: ')
     console.log(req.body);
     res.send(req.body)
 })
+
 
 
 /*
@@ -99,7 +97,6 @@ app.post('/sets', (req, res) => {
     sets.push(set)
     res.json(set)
 })
-
 // update existing set
 app.put('/sets', (req, res) => {
     console.log('put request to /sets for set with id:'+req.body.setID)
@@ -117,6 +114,13 @@ app.put('/sets', (req, res) => {
 
     res.json(sets)
 })
+// delete a set
+app.delete('/sets/:id', (req,res)=>{
+    const id = req.params.id
+    sets = sets.filter((set)=>set.setID!=id)
+    res.json(sets)
+})
+
 
 const PORT = 3001
 app.listen(PORT)
