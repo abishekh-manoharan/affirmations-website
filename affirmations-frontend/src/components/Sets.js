@@ -4,7 +4,7 @@ import dataAccess from '../services/dataAccess'
 import plus from '../images/plus.svg'
 import Set from './Set';
 
-function Content(props) {
+function Sets({setMainContentToShowID}) {
     const [sets, setSets] = useState([])
     const [name, setName] = useState('')
     const [addSetContent, setAddSetContent] = useState('plusSign')
@@ -80,7 +80,7 @@ function Content(props) {
                 {addContent}
                 {
                     sets.map((set) =>
-                        <Set key={set.setID} set={set} setSets={setSets}/>
+                        <Set setMainContentToShowID={setMainContentToShowID}key={set.setID} set={set} setSets={setSets}/>
                     )
                 }
             </div>
@@ -88,4 +88,4 @@ function Content(props) {
     );
 }
 
-export default Content;
+export default Sets;

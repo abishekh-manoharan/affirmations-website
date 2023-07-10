@@ -68,10 +68,15 @@ code {
   justify-self: end;
 }
 
+.edit-set-btn {
+  z-index: 0;
+}
+
 .set-item:nth-of-type(1) {
   background-color: aquamarine;
-
 }
+
+
 /* add form */
 .add-set-set {
   display: grid;

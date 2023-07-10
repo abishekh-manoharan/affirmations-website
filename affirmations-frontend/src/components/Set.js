@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import dataAccess from '../services/dataAccess';
 
-function Set({ set, setSets }) {
+function Set({ set, setSets, setMainContentToShowID}) {
     //states
     const [contentToShowID, setContentToShowID] = useState('setInfo')
     const [name, setName] = useState(set.Name)
@@ -41,8 +41,8 @@ function Set({ set, setSets }) {
     let contentToShow = ''
     if (contentToShowID === 'setInfo') {
         contentToShow =
-            <div className="set-item">
-                <button onClick={(e) => { editSetClickHandler(e, set) }} name="edit">Edit</button>
+            <div onClick={(e)=>setMainContentToShowID({'content':'set', 'id': setState.setID})}className="set-item">
+                <button onClick={(e) => { editSetClickHandler(e, set) }} class="edit-set-btn" name="edit">Edit</button>
                 <div className="set-name">
                     {setState.Name}
                 </div>
