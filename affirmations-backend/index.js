@@ -64,9 +64,9 @@ app.get('/affirmations/:uid/:setID', (req, res) => {
     const setID = Number(req.params.setID)
 
     const filteredAffirmations = affirmations.filter((a) => {
-        console.log('params uid: ' + userId)
-        console.log('params setid: ' + setID)
-        console.log(a.userID === userId && a.setID === setID)
+        // console.log('params uid: ' + userId)
+        // console.log('params setid: ' + setID)
+        // console.log(a.userID === userId && a.setID === setID)
         return a.userID === userId && a.setID === setID
     })
 
