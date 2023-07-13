@@ -31,7 +31,6 @@ code {
 }
 
 .set-item {
-  background-color: aqua;
   min-width: 0px;
   display: grid;
   grid-template-areas: 
@@ -40,13 +39,20 @@ code {
   ;
   grid-template-rows: auto 50px;
   grid-template-columns: 1fr 3fr;
-  flex-basis: 300px; 
+  flex-basis: 250px;
   height: 300px; 
-  /* min-height: 300px; */
   border-radius: 25px;
   align-items: center;
   justify-items: center;
   flex-shrink: 0;
+  /* z-index: 0; */
+}
+.set-item-wallpaper {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  z-index: 0;
+  border-radius: 10%;
 }
 
 .set-name {
@@ -54,26 +60,29 @@ code {
   font-size: x-large;
   margin: 30px;
   margin-top: 60px;
+  z-index: 1;
 }
 
 .set-quantity {
   grid-area: quantity;  
   margin: 15px;
   justify-self: start;
+  z-index: 1;
 }
 
 .set-date {
   margin: 15px;
   grid-area: date;  
   justify-self: end;
+  z-index: 1;
 }
 
 .edit-set-btn {
-  z-index: 0;
+  z-index: 1;
 }
 
 .set-item:nth-of-type(1) {
-  background-color: aquamarine;
+  background-color: rgb(234, 234, 234);
 }
 
 
@@ -86,8 +95,9 @@ code {
   ;  
   grid-template-columns: 1fr 2fr 2fr;
   grid-template-rows: 1fr 1fr;
-  width: 300px;
+  width: 250px;
   margin-top: 50px;
+  z-index: 1;
 }
 .nameLabel{
   grid-area: nameLabel;    
@@ -97,8 +107,8 @@ code {
 .nameInput{
   grid-area: nameInput;   
   height: 20px;
-  width: 200px;
-  margin: auto;
+  width: 90%;
+  margin: auto 5px;
 }
 .submitNameBtn{
   grid-area: submitName;

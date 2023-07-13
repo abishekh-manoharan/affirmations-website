@@ -39,7 +39,8 @@ function Sets({setMainContentToShowID}) {
             "Name": name,
             "Quantity": 0,
             "dateUpdated": new Date().toISOString(),
-            "dateCreated": new Date().toISOString()
+            "dateCreated": new Date().toISOString(),
+            "wallpaperID": "1"
         }
         
         console.log('\nnew set being added:')

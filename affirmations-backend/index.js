@@ -15,7 +15,6 @@ let affirmations = [
         "content": "An eye for an eye makes the whole world blind.",
         "author": "Ghandi",
         "style": "default"
-
     },
     {
         "userID": 1,
@@ -40,14 +39,16 @@ let sets = [
         "Name": "Morning affirmations.",
         "Quantity": 2,
         "dateUpdated": "2012-04-23T18:25:43.511Z",
-        "dateCreated": "2012-04-23T18:25:43.511Z"
+        "dateCreated": "2012-04-23T18:25:43.511Z",
+        "wallpaperID": "1"
     },
     {
         "setID": 2,
         "Name": "Night-time affirmations",
         "Quantity": 1,
         "dateUpdated": "2012-04-23T18:25:43.511Z",
-        "dateCreated": "2012-04-23T18:25:43.511Z"
+        "dateCreated": "2012-04-23T18:25:43.511Z",
+        "wallpaperID": "2"
     }
 ]
 
