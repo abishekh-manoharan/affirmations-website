@@ -66,7 +66,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
         <div>
             <div class="header">
                 {editMode ?
-                    <div style={{ position: 'relative', width: 100+'vw'}}>
+                    <div style={{ position: 'relative', width: 100 + 'vw' }}>
                         <input type='text' class="header-name" style={{ fontSize: 60 + 'px' }} onChange={(e) => { setName(e.target.value) }} value={name} />
                         <img src={editLogo} alt="confirm" class="wallpaper-logo" onClick={handleEditSubmit} />
                     </div>
@@ -76,12 +76,12 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                 <div class="header-options">
                     {editMode ?
                         <>
-                            <div class="header-option" style={{ backgroundColor: 'rgba(144, 254, 147, 0.531)' }}>
+                            <div class="header-option" style={{ backgroundColor: 'rgba(144, 254, 147, 0.300)' }}>
                                 <img src={confirmLogo} style={{ left: 0 + 'px' }} alt="confirm" class="play-img" onClick={handleEditSubmit} />
                                 {/* <img src={confirmLogo} style={{left:0+'px', backgroundColor:'lightgreen'}} alt="confirm" class="play-img" onClick={handleEditSubmit}/> */}
                                 Confirm
                             </div>
-                            <div class="header-option" style={{ backgroundColor: 'rgba(254, 151, 144, 0.531)' }}>
+                            <div class="header-option" style={{ backgroundColor: 'rgba(254, 151, 144, 0.300)' }}>
                                 <img src={xLogo} style={{ left: 0 + 'px' }} alt="cancel" class="play-img" onClick={handleEditCancel} />
                                 Cancel
                             </div>
