@@ -11,7 +11,7 @@ function Layout(props) {
         contentToShow=<Sets setMainContentToShowID={setMainContentToShowID}/>
     }
     else if(mainContentToShowID.content==='set'){
-        contentToShow=<SetView id={mainContentToShowID.id} wallpaperID={mainContentToShowID.set.wallpaperID} setMainContentToShowID={setMainContentToShowID} Name={mainContentToShowID.set.Name}/>
+        contentToShow=<SetView id={mainContentToShowID.id} wallpaperID={mainContentToShowID.set.wallpaperID} setMainContentToShowID={setMainContentToShowID} Name={mainContentToShowID.set.Name} set={mainContentToShowID.set}/>
     }
     
     return (

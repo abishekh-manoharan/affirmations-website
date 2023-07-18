@@ -95,6 +95,7 @@ code {
 }
 
 
+
 /* add form */
 .add-set-set {
   display: grid;
@@ -172,7 +173,6 @@ code {
   justify-content: center;
   align-items: flex-start;
   height: 275px;
-  margin-top: 30px;
 }
 .header-options {
   position: relative;
@@ -186,14 +186,11 @@ code {
 }
 .header-option {
   position: relative;
-
   align-self: center;
-  background-color: rgb(217, 217, 217);
-  /* width: fit-content; */
+  background-color: rgb(217, 217, 217,0.384);
   height: 50px;
-  width: 50px;
-  border-radius: 100%;
-
+  padding: 2px 10px;
+  border-radius: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,10 +199,12 @@ code {
   position: relative;
   height: 30px;
   left: 3px;
+  margin-right: 10px;
 }
 .settings-img {
   position: relative;
   height: 30px;
+  margin-right: 10px;
 }
 .header-name {
   position: relative;
@@ -215,7 +214,13 @@ code {
   border-radius: 10px;
   padding: 5px;
 }
-
+.wallpaper-logo {
+  z-index: 1;
+  position: absolute;
+  top: -30px;
+  right:10px;
+  width: 40px;
+}
 
 
 .list-options-bar {
@@ -237,4 +242,8 @@ code {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+}
+
+.editBtn {
+  z-index: 1;
 }
