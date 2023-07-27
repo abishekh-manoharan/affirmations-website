@@ -241,9 +241,28 @@ code {
   width: 100vw;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
+  z-index: -1;
 }
 
 .editBtn {
   z-index: 1;
 }
+
+.edit-wallpaper-overlay {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: whitesmoke;
+  z-index: 2;
+}
+
+.edit-wallpaper-overlay-option {
+  width: 200px; 
+  margin: 20px;
+}
+
+

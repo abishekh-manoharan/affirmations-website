@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import EditWallpaper from './EditWallpaper';
 import dataAccess from '../services/dataAccess';
 import playLogo from '../images/play-logo.svg'
 import settingsLogo from '../images/settings-logo.svg'
@@ -14,6 +15,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     const [name, setName] = useState(Name)
     const [wallpaperID, setWallpaperID] = useState(set.wallpaperID)
     const [editMode, setEditMode] = useState(false)
+    const [editWallpaperMode, setEditWallpaperMode] = useState(false)
 
     useEffect(() => {
         dataAccess
@@ -31,6 +33,9 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     }
     const handleEditModeButtonClick = () => {
         setEditMode(true)
+    }
+    const handleEditWallpaperButtonClick = () => {
+        setEditWallpaperMode(!editWallpaperMode)
     }
     const handleEditSubmit = () => {
         const updatedSet = {
@@ -52,7 +57,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
 
     // setting appropriate background
     let wallpaperToDisplay = ''
-    switch (set.wallpaperID) {
+    switch (wallpaperID) {
         case ('1'):
             wallpaperToDisplay = <img src={wallpaper1} class="header-background" />
             break;
@@ -68,7 +73,12 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                 {editMode ?
                     <div style={{ position: 'relative', width: 100 + 'vw' }}>
                         <input type='text' class="header-name" style={{ fontSize: 60 + 'px' }} onChange={(e) => { setName(e.target.value) }} value={name} />
-                        <img src={editLogo} alt="confirm" class="wallpaper-logo" onClick={handleEditSubmit} />
+                        <img src={editLogo} alt="confirm" class="wallpaper-logo" onClick={handleEditWallpaperButtonClick} />
+                        {editWallpaperMode 
+                            ?
+                            <EditWallpaper setWallpaperID={setWallpaperID} wallpaperID={wallpaperID} defaultWallpaperID={set.wallpaperID} setEditWallpaperMode={setEditWallpaperMode}/>
+                            : <></>
+                        }
                     </div>
                     :
                     <div class="header-name" style={{ fontSize: 60 + 'px' }}>{Name}</div>
