@@ -273,8 +273,8 @@ code {
 .affirmation { 
   display: flex;
   margin: 10px;
-  width: 100vw;
   justify-content: center;
+  margin: 10px;
 }
 
 .affirmation-value {
@@ -299,4 +299,15 @@ code {
 
 .affirmation-settings-btn {
   width: 5vw;
+}
+
+/* affirmation table header */
+.affirmation-header-value {
+  margin: 10px 20px;
+  font-size: 16px;
+}
+
+.affirmation-header {
+  background-color: rgba(237, 237, 237, 0.215);
+  border-bottom: 1px black solid;
 }

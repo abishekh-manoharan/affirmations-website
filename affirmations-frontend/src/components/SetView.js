@@ -76,9 +76,9 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                     <div style={{ position: 'relative', width: 100 + 'vw' }}>
                         <input type='text' class="header-name" style={{ fontSize: 60 + 'px' }} onChange={(e) => { setName(e.target.value) }} value={name} />
                         <img src={editLogo} alt="confirm" class="wallpaper-logo" onClick={handleEditWallpaperButtonClick} />
-                        {editWallpaperMode 
+                        {editWallpaperMode
                             ?
-                            <EditWallpaper setWallpaperID={setWallpaperID} wallpaperID={wallpaperID} defaultWallpaperID={set.wallpaperID} setEditWallpaperMode={setEditWallpaperMode}/>
+                            <EditWallpaper setWallpaperID={setWallpaperID} wallpaperID={wallpaperID} defaultWallpaperID={set.wallpaperID} setEditWallpaperMode={setEditWallpaperMode} />
                             : <></>
                         }
                     </div>
@@ -121,16 +121,26 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                 <div class="sort-by">Sort By</div>
                 <div class="search">Search</div>
             </div>
-{/* 
-            return (
-                <>
-                    <p>{e.affirmationID}</p>
-                    <p>{e.content}</p>
-                    <p></p>
-                </>
-            ) */}
+
+
+            {/* affitmations table header*/}
+            <div className="affirmation affirmation-header">
+                <div className='affirmation-number affirmation-header-value'>
+                    #
+                </div>
+                <div className='affirmation-content affirmation-header-value'>
+                    Passage
+                </div>
+                <div className='affirmation-author affirmation-header-value'>
+                    Author
+                </div>
+                <div className='affirmation-settings-btn affirmation-header-value'>
+                    
+                </div>
+            </div>
+
             {affirmations.map(e => {
-                return <Affirmation content={e.content} author={e.author}/>
+                return <Affirmation content={e.content} author={e.author} />
             }
             )}
         </div>
