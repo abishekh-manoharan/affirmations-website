@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import EditWallpaper from './EditWallpaper';
+import Affirmation from './Affirmation';
 import dataAccess from '../services/dataAccess';
 import playLogo from '../images/play-logo.svg'
 import settingsLogo from '../images/settings-logo.svg'
@@ -52,6 +53,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     }
     const handleEditCancel = () => {
         setEditMode(false)
+        setWallpaperID(set.wallpaperID)
         setName(set.Name)
     }
 
@@ -119,15 +121,16 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                 <div class="sort-by">Sort By</div>
                 <div class="search">Search</div>
             </div>
-
+{/* 
+            return (
+                <>
+                    <p>{e.affirmationID}</p>
+                    <p>{e.content}</p>
+                    <p></p>
+                </>
+            ) */}
             {affirmations.map(e => {
-                return (
-                    <>
-                        <p>{e.affirmationID}</p>
-                        <p>{e.content}</p>
-                        <p></p>
-                    </>
-                )
+                return <Affirmation content={e.content} author={e.author}/>
             }
             )}
         </div>
