@@ -135,12 +135,12 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                     Author
                 </div>
                 <div className='affirmation-settings-btn affirmation-header-value'>
-                    
+                    Settings
                 </div>
             </div>
 
             {affirmations.map(e => {
-                return <Affirmation content={e.content} author={e.author} />
+                return <Affirmation content={e.content} author={e.author} id={e.affirmationID}/>
             }
             )}
         </div>

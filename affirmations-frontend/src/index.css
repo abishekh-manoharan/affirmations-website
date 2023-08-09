@@ -277,6 +277,14 @@ code {
   margin: 10px;
 }
 
+.affirmation:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.affirmation-header:hover {
+  background-color: rgba(237, 237, 237, 0.215);
+}
+
 .affirmation-value {
   margin: 10px 20px;
 }
@@ -298,7 +306,8 @@ code {
 }
 
 .affirmation-settings-btn {
-  width: 5vw;
+  position: relative;
+  max-width: 5vw;
 }
 
 /* affirmation table header */
@@ -310,4 +319,30 @@ code {
 .affirmation-header {
   background-color: rgba(237, 237, 237, 0.215);
   border-bottom: 1px black solid;
+}
+
+/*overlay menu*/
+.affirmation-overlay-menu {
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  padding: 5px;
+  border: black solid 1px;
+  border-radius: 10px;
+  
+  position:absolute;
+  right: 50px;
+  top: 0px;
+
+  z-index: 1;
+}
+
+.affirmation-overlay-menu-option {   
+  border-bottom: black solid 1px;
+  margin: 1px;
+  padding-bottom: 6px; 
+}
+
+.affirmation-all {
+  position:relative;
 }
