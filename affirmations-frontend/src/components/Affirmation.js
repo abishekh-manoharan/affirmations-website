@@ -4,14 +4,21 @@ function Affirmation({ content, author, id }) {
     const overLayMenuID = `affirmation-overlay-menu-${id}`
 
     useEffect(()=>{
-        document.addEventListener('click', (e2)=>{ 
+        const listener = (e2) =>{ 
             const settingsBtn = document.getElementById("affirmation-settings-btn"+id)
             
             //if the element that was clicked was not a descendent of the settings button, close the sub menu 
             if(!settingsBtn.contains(e2.target)){
                 document.getElementById(overLayMenuID).style = "display:none;"
             }
-        })
+        }
+
+        document.addEventListener('click', listener)
+
+        // on dismount, remove the listener
+        return () => {
+            document.removeEventListener('click', listener)
+        }
     }, [])
 
     const settingsBtnClickHandler = (e1) => {
