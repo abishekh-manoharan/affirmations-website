@@ -46,8 +46,9 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
             'wallpaperID': wallpaperID
         }
 
+        dataAccess.editSet(updatedSet)
+
         setEditMode(false)
-        setName(set.Name)
 
         console.log(updatedSet);
     }
@@ -83,7 +84,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                         }
                     </div>
                     :
-                    <div class="header-name" style={{ fontSize: 60 + 'px' }}>{Name}</div>
+                    <div class="header-name" style={{ fontSize: 60 + 'px' }}>{name}</div>
                 }
                 <div class="header-options">
                     {editMode ?
