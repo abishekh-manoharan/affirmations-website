@@ -12,11 +12,17 @@ function Affirmation({ content, author, id }) {
         const clickOutsideListener = (e2) => {
             const settingsBtn = document.getElementById(settingsBtnID)
             const editMenu = document.getElementById(editMenuID)
+            const overlayMenu = document.getElementById(overLayMenuID)
 
             //if the element that was clicked was not a descendent of the settings button, close the sub menu 
             if (!settingsBtn.contains(e2.target)) {
-                document.getElementById(overLayMenuID).style.display = "none"
+                overlayMenu.style.display = "none"
             }
+
+            if (!editMenu.contains(e2.target)) {
+                editMenu.style.display = "none"
+            }
+
         }
         //handler for clicking edit option
         const clickEditOptionListener = (e) => {
