@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import EditMenu from './EditMenu';
 
-function Affirmation({ content, author, id }) {
+function Affirmation({ affirmation, content, author, id, updateAffirmations }) {
+    
     const overLayMenuID = `affirmation-overlay-menu-${id}`
     const editMenuID = `affirmation-edit-menu-${id}`
     const editMenuEditOptionID = `affirmation-overlay-menu-option-edit-${id}`
     const settingsBtnID = `affirmation-settings-btn-${id}`
 
 
+    
     useEffect(() => {
         // handler to manage clicking of the affirmation setting button and clicking outside of it
         const clickOutsideListener = (e2) => {
             const settingsBtn = document.getElementById(settingsBtnID)
             const editMenu = document.getElementById(editMenuID)
             const overlayMenu = document.getElementById(overLayMenuID)
-
+            
             //if the element that was clicked was not a descendent of the settings button, close the sub menu 
             if (!settingsBtn.contains(e2.target)) {
                 overlayMenu.style.display = "none"
@@ -28,7 +31,7 @@ function Affirmation({ content, author, id }) {
         const clickEditOptionListener = (e) => {
             console.log('edit clicked');
             document.getElementById(overLayMenuID).style.display = "none"
-            document.getElementById(editMenuID).style.display = "flex"
+            document.getElementById(editMenuID).style.display = "block"
             e.stopPropagation()
         }
         //handler for clicking settings button
@@ -52,7 +55,6 @@ function Affirmation({ content, author, id }) {
             document.removeEventListener('click', clickOutsideListener)
         }
     }, [])
-
 
 
     return (
@@ -86,10 +88,7 @@ function Affirmation({ content, author, id }) {
                     </div>
                 </div>
             </div>
-
-            <div class="affirmation-edit-menu" id={editMenuID}>
-                Edit menu for {id}
-            </div>
+            <EditMenu affirmation={affirmation} editMenuID={editMenuID} content={content} author={author} id={id} updateAffirmations={updateAffirmations}/>
         </div>
     );
 }

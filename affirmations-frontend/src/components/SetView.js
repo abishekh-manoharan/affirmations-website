@@ -18,15 +18,23 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     const [editMode, setEditMode] = useState(false)
     const [editWallpaperMode, setEditWallpaperMode] = useState(false)
 
+    // side effects
     useEffect(() => {
-        dataAccess
-            .getAllAffirmationsOfSet(1, id)
-            .then(res => {
-                console.log('res from getAllAffirmationsOfSet: ' + res)
-                console.log('typeof res from getAllAffirmationsOfSet: ' + typeof (res))
-                setAffirmations(res)
-            })
+        updateAffirmations()
     }, [])
+
+    // helpers
+    const updateAffirmations = () => {
+        console.log('update affirmations function running....');
+        dataAccess
+        .getAllAffirmationsOfSet(1, id)
+        .then(res => {
+            console.log('res from getAllAffirmationsOfSet: ' + res)
+            console.log('typeof res from getAllAffirmationsOfSet: ' + typeof (res))
+            setAffirmations(res)
+            console.log('set affirmations complete');
+        })
+    }
 
     // handlers
     const handleReturnBtnClick = () => {
@@ -141,7 +149,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
             </div>
 
             {affirmations.map(e => {
-                return <Affirmation content={e.content} author={e.author} id={e.affirmationID}/>
+                return <Affirmation  affirmation={e} content={e.content} author={e.author} id={e.affirmationID} updateAffirmations={updateAffirmations}/>
             }
             )}
         </div>

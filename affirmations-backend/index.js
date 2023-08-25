@@ -81,6 +81,24 @@ app.post('/affirmations', (req, res) => {
     console.log(req.body);
     res.send(req.body)
 })
+// update an affirmation
+app.put('/affirmations', (req,res)=>{
+    const updatedAffirmation = req.body
+    console.log(updatedAffirmation)
+    affirmations = affirmations.map((e)=>{
+        if(e.affirmationID===updatedAffirmation.affirmationID) {
+            return updatedAffirmation
+        }
+        else {
+            return e
+        }
+    })
+    console.log('====================================');
+    console.log(affirmations);
+    console.log('====================================');
+
+    res.send(updatedAffirmation)
+})
 
 
 
