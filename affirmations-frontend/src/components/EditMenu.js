@@ -30,6 +30,11 @@ function EditMenu({ affirmation, editMenuID, author, setAuthor, content, setCont
         document.getElementById(editMenuID).style.display="none"
     }
 
+    const handleCancelBtnClick = () => {
+        document.getElementById(editMenuID).style.display="none" // hide edit menu
+        setAuthorValue(author) // change values of the form back to default
+        setContentValue(content)
+    }
     return (
         <div class="affirmation-edit-menu" id={editMenuID}>
             <div class="affirmation-edit-menu-header">
@@ -51,7 +56,7 @@ function EditMenu({ affirmation, editMenuID, author, setAuthor, content, setCont
             </div>
             <div class="affirmation-edit-menu-btns">
                 <button id="affirmation-edit-menu-submit-btn" class="affirmation-edit-menu-btn" onClick={handleSubmitBtnClick}>Submit</button>
-                <button id="affirmation-edit-menu-cancel-btn" class="affirmation-edit-menu-btn">Cancel</button>                
+                <button id="affirmation-edit-menu-cancel-btn" class="affirmation-edit-menu-btn" onClick={handleCancelBtnClick}>Cancel</button>                
             </div>
         </div>
     );
