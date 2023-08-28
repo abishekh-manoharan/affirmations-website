@@ -410,3 +410,59 @@ code {
   width: 70px;
   height: 30px;
 }
+
+
+
+/* PLAY VIEW */
+
+.play-display {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 90vh;
+}
+
+.play-content {
+  /* align-self: center; */
+  font-size: large;
+  margin: 40px 100px 40px 100px;
+}
+
+.play-author {
+  align-self: flex-end;
+  margin-right: 50px;
+}
+
+.play-controls {
+  position: fixed;
+  bottom: 7px;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.centered-element {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-left: auto;
+}
+.play-controls-next {
+}
+
+.play-controls-speed {
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+#play-display-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  border: none;
+}
