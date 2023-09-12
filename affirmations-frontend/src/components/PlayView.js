@@ -6,7 +6,8 @@ import pauseLogo from '../images/playview-pause-logo.svg'
 
 function PlayView({ affirmations, setMainContentToShowID, id, set }) {
     const [affirmationNumber, setAffirmationNumber] = useState(0)
-    const [timeInterval, setTimeInterval] = useState(1000)
+    const [timeInterval, setTimeInterval] = useState(1)
+    const [timeIntervalInput, setTimeIntervalInput] = useState(1)
     const [playing, setPlaying] = useState(true)
     const [timeout, setTimeoutState] = useState(null)
 
@@ -15,7 +16,7 @@ function PlayView({ affirmations, setMainContentToShowID, id, set }) {
             const timeoutc = setTimeout(() => { // set timeout to go to next affirmation when state of playing, timeInterval, affirmationNumber changes
                 if (affirmationNumber >= affirmations.length - 1) setAffirmationNumber(0) // go back to beginning when last affirmation is reached
                 else setAffirmationNumber(affirmationNumber + 1)
-            }, timeInterval)
+            }, timeInterval*1000)
             setTimeoutState(timeoutc) // store timeout id as a state to cancel timeout when needed
         }        
     }, [playing, timeInterval, affirmationNumber])
@@ -37,6 +38,18 @@ function PlayView({ affirmations, setMainContentToShowID, id, set }) {
         if (affirmationNumber == 0) setAffirmationNumber(affirmations.length - 1) // go to end when click prev on first
         else setAffirmationNumber(affirmationNumber - 1)
     }
+    const speedChangeHandler = (e) => {
+        const newSpeed = Number(e.target.value)
+        console.log(typeof(newSpeed));
+        if(newSpeed) { // update speed only if there is a truthy input
+            clearTimeout(timeout) // reset timeout
+            setTimeInterval(newSpeed)
+            setTimeIntervalInput(newSpeed)
+        } 
+        else {
+            setTimeIntervalInput('')
+        }
+    }
     return (
         <div className="play-display">
             <button id="play-display-close-btn" value="close" onClick={closeClickHandler}>
@@ -55,7 +68,7 @@ function PlayView({ affirmations, setMainContentToShowID, id, set }) {
                     }
                     <img className="play-controls-next" onClick={nextClickHandler} src={forwardLogo}/>
                 </div>
-                <div className="play-controls-speed"> Speed </div>
+                <input className="play-controls-speed" onChange={speedChangeHandler} value={timeIntervalInput}/>
             </div>
         </div>
     );
