@@ -26,6 +26,14 @@ let affirmations = [
     {
         "userID": 1,
         "affirmationID": 3,
+        "setID": 1,
+        "content": "Can't Stop",
+        "author": "RHCP",
+        "style": "default"
+    },
+    {
+        "userID": 1,
+        "affirmationID": 4,
         "setID": 2,
         "content": "The happiness of your life depends upon the quality of your thoughts.",
         "author": "Marcus Aurelius",

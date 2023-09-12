@@ -65,6 +65,9 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
         setWallpaperID(set.wallpaperID)
         setName(set.Name)
     }
+    const handlePlayClick = () => {
+        setMainContentToShowID({'content':'playSet', 'id': id, 'set': set, 'affirmations': affirmations})
+    }
 
     // setting appropriate background
     let wallpaperToDisplay = ''
@@ -110,7 +113,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                         :
                         <>
                             <div class="header-option">
-                                <img src={playLogo} alt="play" class="play-img" />
+                                <img src={playLogo} alt="play" class="play-img" onClick={handlePlayClick}/>
                                 Play Set
                             </div>
                             <div class="header-option">

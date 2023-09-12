@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import HeaderBar from './HeaderBar';
 import Sets from './Sets';
 import SetView from './SetView';
+import PlayView from './PlayView';
 
 function Layout(props) {
-    const [mainContentToShowID, setMainContentToShowID] = useState({'content':'sets', 'id': null, 'set': null})
+    const [mainContentToShowID, setMainContentToShowID] = useState({'content':'sets', 'id': null, 'set': null, 'affirmations': null})
 
     let contentToShow = ''
     if(mainContentToShowID.content==='sets'){
@@ -13,10 +14,13 @@ function Layout(props) {
     else if(mainContentToShowID.content==='set'){
         contentToShow=<SetView id={mainContentToShowID.id} wallpaperID={mainContentToShowID.set.wallpaperID} setMainContentToShowID={setMainContentToShowID} Name={mainContentToShowID.set.Name} set={mainContentToShowID.set}/>
     }
+    else if(mainContentToShowID.content==='playSet'){
+        contentToShow=<PlayView setMainContentToShowID={setMainContentToShowID} affirmations={mainContentToShowID.affirmations} id={mainContentToShowID.id} set={mainContentToShowID.set}/>
+    }
     
     return (
         <div>
-            <HeaderBar />
+            {mainContentToShowID.content !== 'playSet' ? <HeaderBar/> : <></>}
             {contentToShow}
         </div>
     );
