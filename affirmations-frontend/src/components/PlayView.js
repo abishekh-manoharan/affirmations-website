@@ -27,6 +27,16 @@ function PlayView({ affirmations, setMainContentToShowID, id, set }) {
         clearTimeout(timeout) // stop from proceeding to next affirmation
         setPlaying(!playing)
     }
+    const nextClickHandler = () => {
+        clearTimeout(timeout) // reset timeout
+        if (affirmationNumber >= affirmations.length - 1) setAffirmationNumber(0) // go back to beginning when last affirmation is reached
+        else setAffirmationNumber(affirmationNumber + 1)
+    }
+    const previousClickHandler = () => {
+        clearTimeout(timeout) // reset timeout
+        if (affirmationNumber == 0) setAffirmationNumber(affirmations.length - 1) // go to end when click prev on first
+        else setAffirmationNumber(affirmationNumber - 1)
+    }
     return (
         <div className="play-display">
             <button id="play-display-close-btn" value="close" onClick={closeClickHandler}>
@@ -38,12 +48,12 @@ function PlayView({ affirmations, setMainContentToShowID, id, set }) {
             <div className="play-author">{affirmations[affirmationNumber].author}</div>
             <div className="play-controls">
                 <div className="centered-element">
-                    <img className="play-controls-prev " src={backLogo}/>
+                    <img className="play-controls-prev " onClick={previousClickHandler} src={backLogo}/>
                     {playing ?
                         <img className="play-controls-pause" onClick={playClickHandler} src={pauseLogo}/> :
                         <img className="play-controls-play" onClick={playClickHandler} src={playLogo}/>
                     }
-                    <img className="play-controls-next" src={forwardLogo}/>
+                    <img className="play-controls-next" onClick={nextClickHandler} src={forwardLogo}/>
                 </div>
                 <div className="play-controls-speed"> Speed </div>
             </div>
