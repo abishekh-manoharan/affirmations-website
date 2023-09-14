@@ -6,35 +6,38 @@ import pauseLogo from '../images/playview-pause-logo.svg'
 
 function PlayView({ affirmations, setMainContentToShowID, id, set }) {
     const [affirmationNumber, setAffirmationNumber] = useState(0)
-    const [timeInterval, setTimeInterval] = useState(1)
-    const [timeIntervalInput, setTimeIntervalInput] = useState(1)
+    const [timeInterval, setTimeInterval] = useState(2)
+    const [timeIntervalInput, setTimeIntervalInput] = useState(2)
     const [playing, setPlaying] = useState(true)
     const [timeout, setTimeoutState] = useState(null)
 
     useEffect(()=>{
-        if(playing){
-            const timeoutc = setTimeout(() => { // set timeout to go to next affirmation when state of playing, timeInterval, affirmationNumber changes
+        let timeoutc = null;
+        if(playing){            
+            timeoutc = setTimeout(() => { // set timeout to go to next affirmation when state of playing, timeInterval, affirmationNumber changes
                 if (affirmationNumber >= affirmations.length - 1) setAffirmationNumber(0) // go back to beginning when last affirmation is reached
                 else setAffirmationNumber(affirmationNumber + 1)
             }, timeInterval*1000)
+            console.log('useEffect timeoutc:'+timeoutc);
             setTimeoutState(timeoutc) // store timeout id as a state to cancel timeout when needed
-        }        
+        }
+        
+        return(()=>{ // cleanup to ensure timeout gets disposed on every rerender             
+            clearTimeout(timeoutc)
+        })
     }, [playing, timeInterval, affirmationNumber])
 
     const closeClickHandler = () => {
         setMainContentToShowID({ 'content': 'set', 'id': id, 'set': set })
     }
     const playClickHandler = () => {
-        clearTimeout(timeout) // stop from proceeding to next affirmation
         setPlaying(!playing)
     }
     const nextClickHandler = () => {
-        clearTimeout(timeout) // reset timeout
         if (affirmationNumber >= affirmations.length - 1) setAffirmationNumber(0) // go back to beginning when last affirmation is reached
         else setAffirmationNumber(affirmationNumber + 1)
     }
     const previousClickHandler = () => {
-        clearTimeout(timeout) // reset timeout
         if (affirmationNumber == 0) setAffirmationNumber(affirmations.length - 1) // go to end when click prev on first
         else setAffirmationNumber(affirmationNumber - 1)
     }
@@ -42,7 +45,6 @@ function PlayView({ affirmations, setMainContentToShowID, id, set }) {
         const newSpeed = Number(e.target.value)
         console.log(typeof(newSpeed));
         if(newSpeed) { // update speed only if there is a truthy input
-            clearTimeout(timeout) // reset timeout
             setTimeInterval(newSpeed)
             setTimeIntervalInput(newSpeed)
         } 
