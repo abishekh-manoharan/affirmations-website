@@ -20,7 +20,7 @@ function Layout(props) {
     
     return (
         <div>
-            {mainContentToShowID.content !== 'playSet' ? <HeaderBar/> : <></>}
+            {/* {mainContentToShowID.content !== 'playSet' ? <HeaderBar/> : <></>} */}
             {contentToShow}
         </div>
     );

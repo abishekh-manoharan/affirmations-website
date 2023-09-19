@@ -9,6 +9,8 @@ import xLogo from '../images/x-logo.svg'
 import editLogo from '../images/edit-logo.svg'
 import wallpaper1 from '../images/wallpaper-1.jpeg'
 import wallpaper2 from '../images/wallpaper-2.jpeg'
+import arrowLeft from '../images/arrow-left.svg'
+
 // import wallpaper3 from '../images/wallpaper-3.jpeg'
 
 function SetView({ setMainContentToShowID, id, Name, set }) {
@@ -27,13 +29,13 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     const updateAffirmations = () => {
         console.log('update affirmations function running....');
         dataAccess
-        .getAllAffirmationsOfSet(1, id)
-        .then(res => {
-            console.log('res from getAllAffirmationsOfSet: ' + res)
-            console.log('typeof res from getAllAffirmationsOfSet: ' + typeof (res))
-            setAffirmations(res)
-            console.log('set affirmations complete');
-        })
+            .getAllAffirmationsOfSet(1, id)
+            .then(res => {
+                console.log('res from getAllAffirmationsOfSet: ' + res)
+                console.log('typeof res from getAllAffirmationsOfSet: ' + typeof (res))
+                setAffirmations(res)
+                console.log('set affirmations complete');
+            })
     }
 
     // handlers
@@ -66,7 +68,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
         setName(set.Name)
     }
     const handlePlayClick = () => {
-        setMainContentToShowID({'content':'playSet', 'id': id, 'set': set, 'affirmations': affirmations})
+        setMainContentToShowID({ 'content': 'playSet', 'id': id, 'set': set, 'affirmations': affirmations })
     }
 
     // setting appropriate background
@@ -83,6 +85,9 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
 
     return (
         <div>
+            <button class="play-display-close-btn" value="close" onClick={handleReturnBtnClick}>
+                <img src={arrowLeft}/>
+            </button>
             <div class="header">
                 {editMode ?
                     <div style={{ position: 'relative', width: 100 + 'vw' }}>
@@ -113,7 +118,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                         :
                         <>
                             <div class="header-option">
-                                <img src={playLogo} alt="play" class="play-img" onClick={handlePlayClick}/>
+                                <img src={playLogo} alt="play" class="play-img" onClick={handlePlayClick} />
                                 Play Set
                             </div>
                             <div class="header-option">
@@ -126,13 +131,11 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                 </div>
                 {wallpaperToDisplay}
             </div>
-
-            <button onClick={handleReturnBtnClick}>return</button>
-
+{/*             
             <div class="list-options-bar">
                 <div class="sort-by">Sort By</div>
                 <div class="search">Search</div>
-            </div>
+            </div> */}
 
 
             {/* affitmations table header*/}
@@ -152,7 +155,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
             </div>
 
             {affirmations.map(e => {
-                return <Affirmation  affirmation={e} content={e.content} author={e.author} id={e.affirmationID} updateAffirmations={updateAffirmations}/>
+                return <Affirmation affirmation={e} content={e.content} author={e.author} id={e.affirmationID} updateAffirmations={updateAffirmations} />
             }
             )}
         </div>
