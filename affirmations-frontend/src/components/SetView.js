@@ -68,7 +68,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
         setName(set.Name)
     }
     const handlePlayClick = () => {
-        setMainContentToShowID({ 'content': 'playSet', 'id': id, 'set': set, 'affirmations': affirmations })
+        setMainContentToShowID({ 'content': 'playSet', 'id': id, 'set': set, 'affirmations': affirmations, 'wallpaperID': wallpaperID })
     }
 
     // setting appropriate background

@@ -8,7 +8,7 @@ import clockLogo from '../images/playview-clock-logo.svg'
 import wallpaper1 from '../images/wallpaper-1.jpeg'
 import wallpaper2 from '../images/wallpaper-2.jpeg'
 
-function PlayView({ affirmations, setMainContentToShowID, id, set }) {
+function PlayView({ affirmations, setMainContentToShowID, id, set, wallpaperID}) {
     const [affirmationNumber, setAffirmationNumber] = useState(0)
     const [timeInterval, setTimeInterval] = useState(2)
     const [timeIntervalInput, setTimeIntervalInput] = useState(2)
@@ -60,7 +60,7 @@ function PlayView({ affirmations, setMainContentToShowID, id, set }) {
 
     // specify wallpaper to show
     let wallpaperToShow = null
-    switch (set.wallpaperID) {
+    switch (wallpaperID) {
         case "1":
             wallpaperToShow = <img class="play-wallpaper" src={wallpaper1} />
             break;
