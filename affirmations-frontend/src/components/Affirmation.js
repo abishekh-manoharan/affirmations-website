@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import EditMenu from './EditMenu';
+import DeleteAffirmationConfirmation from './DeleteAffirmationConfirmation';
 
 function Affirmation({ affirmation, content, author, id, updateAffirmations }) {
     
     const overLayMenuID = `affirmation-overlay-menu-${id}`
     const editMenuID = `affirmation-edit-menu-${id}`
+    const deleteMenuID = `affirmation-delete-menu-${id}`
     const editMenuEditOptionID = `affirmation-overlay-menu-option-edit-${id}`
+    const deleteMenuOptionID = `affirmation-overlay-menu-option-delete-${id}`
     const settingsBtnID = `affirmation-settings-btn-${id}`
 
 
@@ -34,6 +37,13 @@ function Affirmation({ affirmation, content, author, id, updateAffirmations }) {
             document.getElementById(editMenuID).style.display = "block"
             e.stopPropagation()
         }
+
+        const clickDeleteOptionListener = (e) => {
+            console.log('delete clicked');
+            document.getElementById(overLayMenuID).style.display = "none"
+            document.getElementById(deleteMenuID).style.display = "block"
+            e.stopPropagation()
+        }
         //handler for clicking settings button
         const clickSettingsBtnHandler = (e) => {
             console.log('settings clicked');
@@ -42,15 +52,18 @@ function Affirmation({ affirmation, content, author, id, updateAffirmations }) {
 
         // add event listeners
         const editBtn = document.getElementById(editMenuEditOptionID)
+        const deleteBtn = document.getElementById(deleteMenuOptionID)
         const settingsBtn = document.getElementById(settingsBtnID)
 
         editBtn.addEventListener('click', clickEditOptionListener)
+        deleteBtn.addEventListener('click', clickDeleteOptionListener)
         settingsBtn.addEventListener('click', clickSettingsBtnHandler)
         document.addEventListener('click', clickOutsideListener)
 
         // on dismount, remove the listeners
         return () => {
             editBtn.removeEventListener('click', clickEditOptionListener)
+            deleteBtn.removeEventListener('click', clickDeleteOptionListener)
             settingsBtn.removeEventListener('click', clickSettingsBtnHandler)
             document.removeEventListener('click', clickOutsideListener)
         }
@@ -82,13 +95,14 @@ function Affirmation({ affirmation, content, author, id, updateAffirmations }) {
                         <div className="affirmation-overlay-menu-option">
                             Copy to set
                         </div>
-                        <div className="affirmation-overlay-menu-option">
+                        <div className="affirmation-overlay-menu-option" id={deleteMenuOptionID}>
                             Delete
                         </div>
                     </div>
                 </div>
             </div>
             <EditMenu affirmation={affirmation} editMenuID={editMenuID} content={content} author={author} id={id} updateAffirmations={updateAffirmations}/>
+            <DeleteAffirmationConfirmation affirmation={affirmation}  content={content} deleteMenuID={deleteMenuID} id={id} updateAffirmations={updateAffirmations}/>
         </div>
     );
 }

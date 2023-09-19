@@ -355,7 +355,7 @@ code {
   gap: 0px;
 }
 
-.affirmation-edit-menu {
+.affirmation-menu {
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -386,7 +386,7 @@ code {
   justify-content: center;
   /* align-items: center; */
 }
-.affirmation-edit-menu-header {
+.affirmation-menu-header {
   font-size: x-large;
   padding: 7px 0px 10px 20px;
   background-color: aliceblue;

@@ -18,9 +18,9 @@ const deleteSet = (id) => axios.delete(URL+'sets/'+id).then(res=>res.data)
 
 // AFFIRMATIONS
 const getAllAffirmationsOfSet = (userID, setID) => axios.get(URL+'affirmations/'+userID+'/'+setID).then(res => res.data)
-
 // const updateAffirmation = (affirmation) => axios.put(URL+'affirmations', affirmation).then((res=>{console.log(`response to ${res}`)}))
 const updateAffirmation = (affirmation) => axios.put(URL+'affirmations', affirmation)
+const deleteAffirmation = (id) => axios.delete(URL+'affirmations/'+id)
 
 
-export default {getAllSets, addSet, editSet, deleteSet, getAllAffirmationsOfSet, updateAffirmation}
+export default {getAllSets, addSet, editSet, deleteSet, getAllAffirmationsOfSet, updateAffirmation, deleteAffirmation}

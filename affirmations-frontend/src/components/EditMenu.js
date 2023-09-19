@@ -36,8 +36,8 @@ function EditMenu({ affirmation, editMenuID, author, setAuthor, content, setCont
         setContentValue(content)
     }
     return (
-        <div class="affirmation-edit-menu" id={editMenuID}>
-            <div class="affirmation-edit-menu-header">
+        <div class="affirmation-menu" id={editMenuID}>
+            <div class="affirmation-menu-header">
                 Edit
             </div>
 
