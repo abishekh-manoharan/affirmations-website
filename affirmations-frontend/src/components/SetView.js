@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import EditWallpaper from './EditWallpaper';
 import Affirmation from './Affirmation';
+import AddAffirmation from './AddAffirmation';
 import dataAccess from '../services/dataAccess';
 import playLogo from '../images/play-logo.svg'
 import settingsLogo from '../images/settings-logo.svg'
@@ -24,6 +25,12 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     useEffect(() => {
         updateAffirmations()
     }, [])
+
+    useEffect(()=> {        
+        console.log('wallpaperIDs:');
+        console.log(set.wallpaperID);
+        console.log(wallpaperID);
+    })
 
     // helpers
     const updateAffirmations = () => {
@@ -56,9 +63,9 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
             'wallpaperID': wallpaperID
         }
 
-        dataAccess.editSet(updatedSet)
-
+        dataAccess.editSet(updatedSet)        
         setEditMode(false)
+        setMainContentToShowID({'content':'set', 'id': id, 'set': updatedSet, 'affirmations': null})
 
         console.log(updatedSet);
     }
@@ -139,6 +146,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
 
 
             {/* affitmations table header*/}
+            <AddAffirmation/>
             <div className="affirmation affirmation-header">
                 <div className='affirmation-number affirmation-header-value'>
                     #
@@ -153,7 +161,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                     Settings
                 </div>
             </div>
-
+            
             {affirmations.map(e => {
                 return <Affirmation affirmation={e} content={e.content} author={e.author} id={e.affirmationID} updateAffirmations={updateAffirmations} />
             }

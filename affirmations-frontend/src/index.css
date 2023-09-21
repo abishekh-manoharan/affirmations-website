@@ -273,9 +273,11 @@ code {
 
 .affirmation { 
   display: flex;
+  justify-content: flex-start;
+  align-items: start;
   margin: 10px;
-  justify-content: center;
   margin: 10px;
+  width: 100vw;
 }
 
 .affirmation:hover {
@@ -350,9 +352,25 @@ code {
 .affirmation-all {
   position:relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  width: 100vw;
   gap: 0px;
+}
+
+#affirmation-add {
+  margin: 10px;
+  padding: 10px;
+  border-color: rgb(217, 217, 217,0.384);;
+  border-width: 1.25px;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+}
+
+#affirmation-add-plus-icon {
+  width: 30px;
 }
 
 .affirmation-menu {
