@@ -88,12 +88,21 @@ app.post('/affirmations', (req, res) => {
     
     // getting unique id by getting the highest affirmationID then adding 1 to it
     const affirmationID = Math.max(...affirmations.map(e=>e.affirmationID))+1
-    
+    // creating new affirmation with updated id    
     const newAffirmation = {
         ...req.body, 
         affirmationID: affirmationID
     }
-    
+    // updating set quantity
+    sets = sets.map(set => { 
+        if(set.setID===req.body.setID){
+            return {...set, "Quantity": set.Quantity+1}
+        }
+        else {
+            return set
+        }
+    })
+
     affirmations.push(newAffirmation)
 
     res.json(newAffirmation)

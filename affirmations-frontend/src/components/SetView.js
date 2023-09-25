@@ -20,13 +20,14 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     const [wallpaperID, setWallpaperID] = useState(set.wallpaperID)
     const [editMode, setEditMode] = useState(false)
     const [editWallpaperMode, setEditWallpaperMode] = useState(false)
+    const [affirmationsLengthOverZero, setAffirmationsLengthOverZero] = useState(true)
 
     // side effects
     useEffect(() => {
         updateAffirmations()
     }, [])
 
-    useEffect(()=> {        
+    useEffect(() => {
         console.log('wallpaperIDs:');
         console.log(set.wallpaperID);
         console.log(wallpaperID);
@@ -42,6 +43,14 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                 console.log('typeof res from getAllAffirmationsOfSet: ' + typeof (res))
                 setAffirmations(res)
                 console.log('set affirmations complete');
+
+                // set state depending on if there are any affirmations in the set. this is to set the play button accordingly
+                if (res.length > 0) {
+                    setAffirmationsLengthOverZero(true)
+                }
+                else {
+                    setAffirmationsLengthOverZero(false)
+                }
             })
     }
 
@@ -63,9 +72,9 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
             'wallpaperID': wallpaperID
         }
 
-        dataAccess.editSet(updatedSet)        
+        dataAccess.editSet(updatedSet)
         setEditMode(false)
-        setMainContentToShowID({'content':'set', 'id': id, 'set': updatedSet, 'affirmations': null})
+        setMainContentToShowID({ 'content': 'set', 'id': id, 'set': updatedSet, 'affirmations': null })
 
         console.log(updatedSet);
     }
@@ -93,7 +102,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     return (
         <div>
             <button class="play-display-close-btn" value="close" onClick={handleReturnBtnClick}>
-                <img src={arrowLeft}/>
+                <img src={arrowLeft} />
             </button>
             <div class="header">
                 {editMode ?
@@ -125,7 +134,10 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                         :
                         <>
                             <div class="header-option">
-                                <img src={playLogo} alt="play" class="play-img" onClick={handlePlayClick} />
+                                {affirmationsLengthOverZero ? // remove play function if there are no affirmations 
+                                    <img src={playLogo} alt="play" class="play-img" onClick={handlePlayClick} /> :
+                                    <img src={playLogo} alt="play" class="play-img" /> 
+                                }
                                 Play Set
                             </div>
                             <div class="header-option">
@@ -138,7 +150,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                 </div>
                 {wallpaperToDisplay}
             </div>
-{/*             
+            {/*             
             <div class="list-options-bar">
                 <div class="sort-by">Sort By</div>
                 <div class="search">Search</div>
@@ -146,7 +158,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
 
 
             {/* affitmations table header*/}
-            <AddAffirmation set={set} updateAffirmations={updateAffirmations}/>
+            <AddAffirmation set={set} updateAffirmations={updateAffirmations} />
             <div className="affirmation affirmation-header">
                 <div className='affirmation-number affirmation-header-value'>
                     #
@@ -161,7 +173,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                     Settings
                 </div>
             </div>
-            
+
             {affirmations.map(e => {
                 return <Affirmation affirmation={e} content={e.content} author={e.author} id={e.affirmationID} updateAffirmations={updateAffirmations} />
             }
