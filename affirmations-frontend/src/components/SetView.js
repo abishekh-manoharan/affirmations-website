@@ -146,7 +146,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
 
 
             {/* affitmations table header*/}
-            <AddAffirmation/>
+            <AddAffirmation set={set} updateAffirmations={updateAffirmations}/>
             <div className="affirmation affirmation-header">
                 <div className='affirmation-number affirmation-header-value'>
                     #

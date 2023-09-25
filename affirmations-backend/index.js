@@ -85,9 +85,18 @@ app.get('/affirmations/:uid/:setID', (req, res) => {
 })
 // add an affirmation
 app.post('/affirmations', (req, res) => {
-    console.log('post body: ')
-    console.log(req.body);
-    res.send(req.body)
+    
+    // getting unique id by getting the highest affirmationID then adding 1 to it
+    const affirmationID = Math.max(...affirmations.map(e=>e.affirmationID))+1
+    
+    const newAffirmation = {
+        ...req.body, 
+        affirmationID: affirmationID
+    }
+    
+    affirmations.push(newAffirmation)
+
+    res.json(newAffirmation)
 })
 // update an affirmation
 app.put('/affirmations', (req,res)=>{

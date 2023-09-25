@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import plus from '../images/plus.svg'
+import AddAffirmationMenu from './AddAffirmationMenu';
 
-function AddAffirmation(props) {
+function AddAffirmation({ set, updateAffirmations }) {
+    const [showAddMenu, setShowAddMenu] = useState(false)
+
+    const addAffirmationMenuId = "affirmation-menu-id-" + set.setID
+
+    useEffect(() => {
+        // document.getElementById("affirmation-add").addEventListener("click", handleAddBtnClick)
+    }, [])
+
+    //handlers
+    const handleAddBtnClick = (e) => {
+        e.stopPropagation()       
+        setShowAddMenu(true)
+        console.log('click');
+    }
+
     return (
-        <button id="affirmation-add">
-            <img src={plus} id="affirmation-add-plus-icon" />
-            <div>
-                Add affirmation
-            </div>
-        </button>
+        <>
+            {/* add affirmation button  */}
+            <button id="affirmation-add" onClick={handleAddBtnClick}>
+                <img src={plus} id="affirmation-add-plus-icon" />
+                <div>
+                    Add affirmation
+                </div>
+            </button>
+            {showAddMenu ?
+                <AddAffirmationMenu updateAffirmations={updateAffirmations} setShowAddMenu={setShowAddMenu} addAffirmationMenuId={addAffirmationMenuId} set={set}/> :
+                <></>
+            }
+        </>
     );
 }
 
 export default AddAffirmation;
+
