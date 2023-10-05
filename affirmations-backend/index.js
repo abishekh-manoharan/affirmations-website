@@ -11,25 +11,18 @@ const Set = require('./models/set')
     CRUD for affirmations
 */
 // get all affirmations 
-app.get('/affirmations', (req, res) => {
+app.get('/affirmations', (req, res,next) => {
     Affirmation.find({})
         .then(result=>res.json(result))
 })
 // get all affirmations of a set from a user
-app.get('/affirmations/:uid/:setID', (req, res) => {
+app.get('/affirmations/:uid/:setID', (req, res, next) => {
     const userId = Number(req.params.uid)
-    const setID = Number(req.params.setID)
+    const setId = req.params.setID
 
-    const filteredAffirmations = affirmations.filter((a) => {
-        // console.log('params uid: ' + userId)
-        // console.log('params setid: ' + setID)
-        // console.log(a.userID === userId && a.setID === setID)
-        return a.userID === userId && a.setID === setID
-    })
-
-    console.log(filteredAffirmations);
-
-    res.json(filteredAffirmations)
+    Affirmation.find({userID: userId, setID: setId})
+        .then(result=>res.json(result))
+        .catch(err=>next(err))
 })
 // add an affirmation
 app.post('/affirmations', (req, res) => {

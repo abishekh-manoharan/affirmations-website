@@ -35,7 +35,7 @@ function Sets({setMainContentToShowID}) {
     const addButtonClickHandler = (e) => {
         // creating js object for the new set        
         const newSet = {
-            "setID": Math.random() * 10000000000,
+            // "setID": Math.random() * 10000000000,
             "Name": name,
             "Quantity": 0,
             "dateUpdated": new Date().toISOString(),

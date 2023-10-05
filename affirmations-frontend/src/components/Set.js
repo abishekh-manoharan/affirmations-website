@@ -16,7 +16,7 @@ function Set({ set, setSets, setMainContentToShowID }) {
     
     
     return (
-        <div onClick={(e) => setMainContentToShowID({ 'content': 'set', 'id': set.setID, 'set': set})} className="set-item">
+        <div onClick={(e) => setMainContentToShowID({ 'content': 'set', 'id': set.id, 'set': set})} className="set-item">
             {wallpaper}
             <div className="set-name">
                 {set.Name}

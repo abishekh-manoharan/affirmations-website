@@ -36,6 +36,8 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
     // helpers
     const updateAffirmations = () => {
         console.log('update affirmations function running....');
+        console.log(id);
+        console.log(typeof(id));
         dataAccess
             .getAllAffirmationsOfSet(1, id)
             .then(res => {
@@ -52,6 +54,7 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
                     setAffirmationsLengthOverZero(false)
                 }
             })
+            .catch(err=>console.log(err))
     }
 
     // handlers

@@ -5,8 +5,8 @@ mongoose.connect(process.env.MONGO_URI)
     .catch((err)=>{console.log('error connecting to mongodb: '+err.message);})
 
 const affirmationSchema = new mongoose.Schema({
-    "userID": mongoose.Schema.Types.ObjectId,
-    "setID": mongoose.Schema.Types.ObjectId,
+    "userID": Number,
+    "setID": mongoose.Schema.ObjectId,
     "content": String,
     "author": String,
 })
