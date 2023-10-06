@@ -124,20 +124,12 @@ app.post('/sets', (req, res) => {
 })
 // update existing set
 app.put('/sets', (req, res) => {
-    console.log('put request to /sets for set with id:'+req.body.setID)
-    console.log('body: '+req.body)
-    const setID = req.body.setID
+    const setID = req.body.id
+    const updatedSet = {...req.body}
 
-    sets = sets.map(e=>{
-        if(e.setID===setID) { 
-            return req.body
-        }
-        else {
-            return e
-        }
+    Set.findByIdAndUpdate(setID, updatedSet).then(result=>{
+        Set.find({}).then((sets => res.json(sets)))
     })
-
-    res.json(sets)
 })
 // delete a set
 app.delete('/sets/:id', (req,res)=>{

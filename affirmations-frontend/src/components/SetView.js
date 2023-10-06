@@ -29,17 +29,10 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
 
     // helpers
     const updateAffirmations = () => {
-        console.log('update affirmations function running....');
-        console.log(id);
-        console.log(typeof(id));
         dataAccess
             .getAllAffirmationsOfSet(1, id)
-            .then(res => {
-                console.log('res from getAllAffirmationsOfSet: ' + res)
-                console.log('typeof res from getAllAffirmationsOfSet: ' + typeof (res))
+            .then(res => {              
                 setAffirmations(res)
-                console.log('set affirmations complete');
-
                 // set state depending on if there are any affirmations in the set. this is to set the play button accordingly
                 if (res.length > 0) {
                     setAffirmationsLengthOverZero(true)
