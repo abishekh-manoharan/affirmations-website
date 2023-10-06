@@ -24,30 +24,37 @@ app.get('/affirmations/:uid/:setID', (req, res, next) => {
         .then(result=>res.json(result))
         .catch(err=>next(err))
 })
+
 // add an affirmation
-app.post('/affirmations', (req, res) => {
-    
-    // getting unique id by getting the highest affirmationID then adding 1 to it
-    const affirmationID = Math.max(...affirmations.map(e=>e.affirmationID))+1
-    // creating new affirmation with updated id    
-    const newAffirmation = {
-        ...req.body, 
-        affirmationID: affirmationID
-    }
-    // updating set quantity
-    sets = sets.map(set => { 
-        if(set.setID===req.body.setID){
-            return {...set, "Quantity": set.Quantity+1}
-        }
-        else {
-            return set
-        }
+app.post('/affirmations', (req, res, next) => {
+    const affirmation = new Affirmation({
+        "userID": req.body.userID,
+        "setID": req.body.setID,
+        "content": req.body.content,
+        "author": req.body.author,
     })
 
-    affirmations.push(newAffirmation)
+    affirmation.save().then(result=>{
+        res.json(result)
+    }).catch(err=>next(err))
+    
 
-    res.json(newAffirmation)
+    //updating of set quantity
+    Set.findById(req.body.setID).then(result=>{
+        const updated = {
+            _id: result.id,
+            Name: result.Name,
+            Quantity: result.Quantity+1,
+            dateUpdated: result.dateUpdated,
+            dateCreated: result.dateCreated,
+            wallpaperID: result.wallpaperID
+        }
+        Set.findByIdAndUpdate(req.body.setID, updated).then(ress=>{
+            console.log(ress);
+        })
+    })
 })
+
 // update an affirmation
 app.put('/affirmations', (req,res)=>{
     const updatedAffirmation = req.body

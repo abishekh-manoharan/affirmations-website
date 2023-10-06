@@ -178,7 +178,9 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
             </div>
 
             {affirmations.map(e => {
-                return <Affirmation affirmation={e} content={e.content} author={e.author} id={e.affirmationID} updateAffirmations={updateAffirmations} />
+                console.log('e');
+                console.log(e);
+                return <Affirmation affirmation={e} content={e.content} author={e.author} id={e.id} updateAffirmations={updateAffirmations} />
             }
             )}
         </div>

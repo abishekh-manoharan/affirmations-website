@@ -5,12 +5,13 @@ import AddAffirmationMenu from './AddAffirmationMenu';
 function AddAffirmation({ set, updateAffirmations }) {
     const [showAddMenu, setShowAddMenu] = useState(false)
 
-    const addAffirmationMenuId = "affirmation-menu-id-" + set.setID
+    const addAffirmationMenuId = "affirmation-menu-id-" + set.id
 
     useEffect(() => {
-        // document.getElementById("affirmation-add").addEventListener("click", handleAddBtnClick)
+        console.log('addaffirmation menu setid')
+        console.log(set.id)
     }, [])
-
+    
     //handlers
     const handleAddBtnClick = (e) => {
         e.stopPropagation()       

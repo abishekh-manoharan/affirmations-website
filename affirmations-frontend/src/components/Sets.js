@@ -81,7 +81,7 @@ function Sets({setMainContentToShowID}) {
                 {addContent}
                 {
                     sets.map((set) =>
-                        <Set setMainContentToShowID={setMainContentToShowID}key={set.setID} set={set} setSets={setSets}/>
+                        <Set setMainContentToShowID={setMainContentToShowID}key={set.id} set={set} setSets={setSets}/>
                     )
                 }
             </div>

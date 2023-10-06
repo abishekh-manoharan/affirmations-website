@@ -28,7 +28,7 @@ function AddAffirmationMenu({addAffirmationMenuId, setShowAddMenu, set, updateAf
         const newAffirmation = {
             "userID": 1,
             "affirmationID": 1, // will be updated on server with unique affirmationID
-            "setID": set.setID,
+            "setID": set.id,
             "content": contentValue,
             "author": authorValue,
             "style": "default"
