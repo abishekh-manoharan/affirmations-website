@@ -26,8 +26,7 @@ function AddAffirmationMenu({addAffirmationMenuId, setShowAddMenu, set, updateAf
 
     const handleSubmitBtnClick = () => {       
         const newAffirmation = {
-            "userID": 1,
-            "affirmationID": 1, // will be updated on server with unique affirmationID
+            "userID": 1,            
             "setID": set.id,
             "content": contentValue,
             "author": authorValue,

@@ -27,12 +27,6 @@ function SetView({ setMainContentToShowID, id, Name, set }) {
         updateAffirmations()
     }, [])
 
-    useEffect(() => {
-        console.log('wallpaperIDs:');
-        console.log(set.wallpaperID);
-        console.log(wallpaperID);
-    })
-
     // helpers
     const updateAffirmations = () => {
         console.log('update affirmations function running....');

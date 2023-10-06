@@ -12,9 +12,7 @@ function DeleteAffirmationConfirmation({affirmation, content, deleteMenuID, upda
     }
 
     const handleDeleteBtnClick = () => {
-        console.log('e.affirmationID'+affirmation.affirmationID);
-        console.log(affirmation);
-        dataAccess.deleteAffirmation(affirmation.affirmationID).then(res=>updateAffirmations())
+        dataAccess.deleteAffirmation(affirmation.id).then(res=>updateAffirmations())
         document.getElementById(deleteMenuID).style.display="none";
     }
 

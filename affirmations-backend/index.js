@@ -73,17 +73,37 @@ app.put('/affirmations', (req,res)=>{
 
     res.send(updatedAffirmation)
 })
+
 // delete an affirmation
 app.delete('/affirmations/:id', (req,res)=>{
-    const id = Number(req.params.id)
-    console.log('id:'+id);
-    affirmations = affirmations.filter((e)=>{
-        console.log('e.affirmationID:'+e.affirmationID);        
-        return e.affirmationID!=id}
-    )
+    const id = req.params.id
     
-    console.log('after delete:'+affirmations);
-    res.json(affirmations)
+    // delete affirmation from affirmations collection    
+    Affirmation.findByIdAndDelete(id).then(result=>{
+        if(result) {
+            console.log('setID: '+result.setID);
+
+            // update set quantity
+            Set.findById(result.setID).then(set=>{
+                const updated = {
+                    _id: set.id,
+                    Name: set.Name,
+                    Quantity: set.Quantity-1,
+                    dateUpdated: set.dateUpdated,
+                    dateCreated: set.dateCreated,
+                    wallpaperID: set.wallpaperID
+                }
+                Set.findByIdAndUpdate(result.setID, updated,{new:true}).then(ress=>{
+                    console.log(ress);
+                })
+            })
+
+            // return updated list of affirmations
+            Affirmation.find({}).then(affirmations => res.json(affirmations)) 
+        }         
+    }).catch(err=>console.log(err.name))
+    
+
 })
 
 
